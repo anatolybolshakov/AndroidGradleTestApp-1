@@ -7,7 +7,7 @@ steps:
     inputs:
       gradleWrapperFile: '$(System.DefaultWorkingDirectory)/gradlew'
       workingDirectory: '$(System.DefaultWorkingDirectory)'
-      tasks: 'test'
+      tasks: 'gradlew clean build jacocoTestReport'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.html'
       codeCoverageToolOption: 'JaCoCo'
