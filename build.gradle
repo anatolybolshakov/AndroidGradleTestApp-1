@@ -1,14 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.1'
-        
+        classpath 'com.android.tools.build:gradle:3.6.0'
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -37,16 +37,28 @@ allprojects {
 //}
 
 test {
+    useJUnitPlatform()
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
-//jacocoTestReport {
-//    dependsOn test // tests are required to run before generating the report
-//}
 jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+jacocoTestReport {
+    //reports {
+        //xml.enabled true
+        //csv.enabled false
+        //html.destination file("${buildDir}/jacocoHtml")
+    //}
+    //dependsOn(test)
+
     reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/jacocoHtml")
+        xml {
+            enabled true // coveralls plugin depends on xml format report
+        }
+
+        html {
+            enabled true
+        }
     }
 }
 jacoco {
