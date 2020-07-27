@@ -38,6 +38,7 @@ allprojects {
 
 test {
     useJUnitPlatform()
+    reports.html.enabled = true
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
 jacocoTestReport {
